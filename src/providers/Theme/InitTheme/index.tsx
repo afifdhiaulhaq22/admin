@@ -1,38 +1,34 @@
-import Script from 'next/script'
-import React from 'react'
+'use client'
+
+import { useEffect } from 'react'
 
 import { defaultTheme, themeLocalStorageKey } from '../ThemeSelector/types'
 
-export const InitTheme: React.FC = () => {
-  return (
-    // eslint-disable-next-line @next/next/no-before-interactive-script-outside-document
-    <Script
-      dangerouslySetInnerHTML={{
-        __html: `
-  (function () {
-    function getImplicitPreference() {
-      var mediaQuery = '(prefers-color-scheme: dark)'
-      var mql = window.matchMedia(mediaQuery)
-      var hasImplicitPreference = typeof mql.matches === 'boolean'
+export const InitTheme = () => {
+  useEffect(() => {
+    const getImplicitPreference = () => {
+      const mediaQuery = '(prefers-color-scheme: dark)'
+      const mql = window.matchMedia(mediaQuery)
 
-      if (hasImplicitPreference) {
+      if (typeof mql.matches === 'boolean') {
         return mql.matches ? 'dark' : 'light'
       }
 
       return null
     }
 
-    function themeIsValid(theme) {
+    const themeIsValid = (theme: string | null) => {
       return theme === 'light' || theme === 'dark'
     }
 
-    var themeToSet = '${defaultTheme}'
-    var preference = window.localStorage.getItem('${themeLocalStorageKey}')
+    let themeToSet = defaultTheme
+
+    const preference = window.localStorage.getItem(themeLocalStorageKey)
 
     if (themeIsValid(preference)) {
       themeToSet = preference
     } else {
-      var implicitPreference = getImplicitPreference()
+      const implicitPreference = getImplicitPreference()
 
       if (implicitPreference) {
         themeToSet = implicitPreference
@@ -40,11 +36,7 @@ export const InitTheme: React.FC = () => {
     }
 
     document.documentElement.setAttribute('data-theme', themeToSet)
-  })();
-  `,
-      }}
-      id="theme-script"
-      strategy="beforeInteractive"
-    />
-  )
+  }, [])
+
+  return null
 }
