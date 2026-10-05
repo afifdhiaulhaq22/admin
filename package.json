@@ -22,6 +22,7 @@
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts"
   },
   "dependencies": {
+    "@payloadcms/storage-vercel-blob": "3.90.2",
     "@neondatabase/serverless": "^1.1.0",
     "@payloadcms/admin-bar": "3.90.2",
     "@payloadcms/db-vercel-postgres": "3.90.2",
@@ -38,6 +39,7 @@
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@vercel/blob": "^2.8.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
@@ -53,8 +55,7 @@
     "react-dom": "19.2.6",
     "react-hook-form": "7.71.1",
     "sharp": "0.35.4",
-    "tailwind-merge": "^3.4.0",
-    "@payloadcms/db-vercel-postgres": "3.90.2"
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
